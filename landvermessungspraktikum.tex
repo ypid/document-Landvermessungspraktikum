@@ -1,0 +1,96 @@
+%% <school/Epochenheft.tex> template 1.1.1 by Robin `ypid` Schneider <ypid23@aol.de>
+%% The current version can be found on: https://github.com/ypid/typesetting/blob/master/templates/school/Epochenheft.tex
+%%% preamble
+%\RequirePackage{snapshot}		%% \jobname.dep
+%\listfiles %% listfiles to logfile
+\RequirePackage{RequirePackageRS}
+\documentclass[12pt,a4paper,ngerman,numbers=noenddot,toc=listof]{scrartcl}	%% ,draft,pointednumbers,
+%\usepackage[nohyperlinks,nolist]{acronym}		% nolist,withpage,footnote %% Abkürzungsverzeichnis
+\usepackage{
+	physicsRS,
+	scrartclRS,
+	defaultRS,
+%	literatureRS,
+%	debugRS,
+	timeRS,
+	graphicRS,
+	subfigure,
+	mathematicsRS,
+%	gamesRS,
+	layoutRS,
+	footingRS,
+	extensionsRS,
+	docExtensionsRS,
+	schoolRS,
+%	chemistryRS,
+}
+%% specific indications
+\readgitstat{7}
+\SetTITEL{Landvermessungspraktikum}
+\SetAUTHOR{1}{}
+\SetKLASSE{10}
+\SetSUBJECT{Epochenheft}
+\newcommand{\Teacher}{Herrn Dr. Manfred Steingraber}
+\SetURL{http://ypid.files.wordpress.com/2013/04//landvermessungspraktikum.pdf}
+\SetGitURL{https://github.com/ypid/document-Landvermessungspraktikum}
+\choosedefaultlicense
+\renewcommand{\licenseadd}{, mit Ausnahme der Abb. 1 bis 6 und 9 bis 10,\xspace}
+\SetCREATEDATE{2010}{07}{06}{13}{07}{00}		%% {YYYY}{MM}{DD}{HH}{MM}{SS}
+\SetABGABEDATUM{2}{2010}{07}{23}{1}
+\usepackage{
+	schoolPDFinfoRS,
+	tableRS,
+}
+%\SetDraft{on}
+%%% body
+\begin{document}
+\pdfbookmark[1]{\Titlepagename}{titlepage}\pagenumbering{Roman}\thispagestyle{empty}
+\input{files/titlepage}
+\newpage\pdfbookmark[1]{\contentsname}{inhaltsverzeichnis}
+\tableofcontents	%% Inhaltsverzeichnis
+\newpage
+\listoffigures		%% Abbildungsverzeichnis
+%\listoftables		%% Tabellenverzeichnis
+%\lstlistoflistings	%% Quellcodeverzeichnis
+%\input{/home/rsadmin/Dokumente/LaTeX/Abkuerzungen/Chemie}
+
+\setcounter{headpages}{\value{page}}\newpage\pagenumbering{arabic}
+%%%%%%%%%%%
+\input{files/chapters/content}
+
+\setcounter{sectionsV}{\value{section}}		%% Speichert die sectionnummer vor \appendix zwischen
+\appendix	%% Sorgt für Buchstaben im Inhaltsverzeichnis
+
+%\newpage\printbibliography[heading=bibnumbered]
+
+\vfill
+\printURLlong
+\printlicense
+\printendsignature
+%\ifDraft{
+  \newpage\Statistiken
+  Status:~\progressbar{.96} (eigenes Ermessen)
+  \newpage
+  \begin{sourcefiletable}{1}
+    \sourcefile{Hauptdatei}{\jobname.tex}
+%    \sourcefile{Metainformationen}{files/metainfos.tex}
+    \Isourcefile{Titelseite}{files/titlepage.tex}
+    \Isourcefile{Inhalt}{files/chapters/content.tex}
+%    \sourcefile{Literatur-Datenbank}{files/bibliographie.bib}
+  \end{sourcefiletable}
+%}{}
+%\ifDraft{
+	\pdfbookmark[2]{Versionshinweise}{versionshinweise}
+	\subsection*{Versionshinweise}
+	\input{files/git/versions-log}
+  \begin{landscape}
+	\pagestyle{empty}
+	%\printgitstatlandscape{1}
+  \end{landscape}
+	%\printgitstat{1}
+%	\subsubsection*{Dateien?}
+%	\pdfbookmark[3]{Dateien?}{files_by_date}
+%	\includegraphics[width=14cm]{files/git/stats/files_by_date-crop}
+%	\listoffixmes
+%}{}
+\end{document}
